@@ -1,3 +1,7 @@
+/*
+    Buggered if I can remember what this does
+*/
+
 SELECT
   substr(date, 8, 4) || '-' ||               
     CASE substr(date, 4, 3)                    
