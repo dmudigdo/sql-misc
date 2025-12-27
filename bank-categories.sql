@@ -5,6 +5,10 @@
     on Coles and Woolworths supermarkets in the last 6 months.
     Using DB Browser (SQLite database browser), this was very
     easily done: ready-to-go environment, few lines of code.
+
+    This assumes that the bank transaction exported .csv table
+    has the headings 'Date', 'Description' and 'Debit' in there,
+    please adjust as necessary.
 */
 
 SELECT Date, Description, Debit
