@@ -1,4 +1,5 @@
 -- From Coursera PostgreSQL course
+-- (Revise Many-to-Many on C1M4L1)
 
 DROP TABLE album CASCADE;
 CREATE TABLE album (
