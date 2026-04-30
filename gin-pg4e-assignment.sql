@@ -17,11 +17,8 @@ INSERT INTO docs01 (doc) VALUES
 ('language is not portable across different types of'),
 ('hardware Programs written in highlevel languages can be moved between');
 
-SELECT id, unnest(string_to_array(doc, ' ')) AS keyword
-FROM docs01
-ORDER BY id;
-
 INSERT INTO invert01 (doc_id, keyword)
 SELECT DISTINCT id, s.keyword AS keyword
-FROM docs AS D, unnest(string_to_array(D.doc, ' ')) s(keyword)
+FROM docs01 AS D, unnest(string_to_array(lower(D.doc), ' ')) s(keyword)
 ORDER BY id;
+
