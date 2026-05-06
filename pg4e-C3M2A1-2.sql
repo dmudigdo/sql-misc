@@ -1,3 +1,5 @@
+-- 1. String array based GIN
+
 -- Make the table
 CREATE TABLE docs03 (id SERIAL, doc TEXT, PRIMARY KEY(id));
 
@@ -22,5 +24,15 @@ CREATE INDEX array03 ON docs03 USING gin(string_to_array(lower(doc), ' ') array_
 
 -- ...such that this will work:
 SELECT id, doc FROM docs03 WHERE '{programmers}' <@ string_to_array(lower(doc), ' ');
+
+-- (and EXPLAINing it won't sequentially scan)
+
+-- 2. tsvector based GIN
+
+-- Make the index...
+CREATE INDEX fulltext03 ON docs03 USING gin(...);
+
+-- ... such that this will work:
+SELECT id, doc FROM docs03 WHERE to_tsquery('english', 'programmers') @@ to_tsvector('english', doc);
 
 -- (and EXPLAINing it won't sequentially scan)
