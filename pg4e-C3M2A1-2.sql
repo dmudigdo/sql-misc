@@ -30,7 +30,7 @@ SELECT id, doc FROM docs03 WHERE '{programmers}' <@ string_to_array(lower(doc), 
 -- 2. tsvector based GIN
 
 -- Make the index...
-CREATE INDEX fulltext03 ON docs03 USING gin(...);
+CREATE INDEX fulltext03 ON docs03 USING gin(to_tsvector('english', doc));
 
 -- ... such that this will work:
 SELECT id, doc FROM docs03 WHERE to_tsquery('english', 'programmers') @@ to_tsvector('english', doc);
